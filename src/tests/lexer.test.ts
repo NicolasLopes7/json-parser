@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { lexer, string, number, boolean, _null } from "../lib/lexer";
-import { TokenType } from "../lib/tokens";
+import { TokenType } from "../lib/types";
 
 describe('Lexer', () => {
     it('should parse a json', () => {
@@ -30,7 +30,7 @@ describe('Lexer', () => {
     describe('string', () => {
         it('should parse a string', () => {
             const json = '"nic"'
-            expect(string(json)).toEqual({ type: TokenType.STRING, literal: '"nic"' })
+            expect(string(json)).toEqual({ type: TokenType.STRING, literal: 'nic' })
         })
 
         it('should not parse a string without quotes', () => {

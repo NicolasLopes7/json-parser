@@ -1,4 +1,4 @@
-import { TokenType, Token } from "./tokens"
+import { TokenType, Token } from "./types"
 
 const charTokenMap: Record<string, TokenType> = {
     '{': TokenType.LEFT_BRACE,
@@ -28,7 +28,7 @@ export const number = (rest: string): Token | undefined => {
 export const string = (rest: string) => {
     if (!rest.startsWith('"')) return
     const closingQuoteIndex = rest.slice(1).split("").findIndex((char) => char === '"')
-    return { type: TokenType.STRING, literal: rest.slice(0, closingQuoteIndex + 2) }
+    return { type: TokenType.STRING, literal: rest.slice(1, closingQuoteIndex + 1) }
 }
 
 export const boolean = (rest: string) => {
@@ -41,7 +41,7 @@ export const _null = (rest: string) => {
 }
 
 const tokenSize = (token?: Token['literal']) => {
-    if (typeof token === 'string') return token.length - 1
+    if (typeof token === 'string') return token.length + 1
     if (typeof token === 'boolean') return 3 // (true OR false) -1
     if (typeof token === 'number') return token.toString().length - 1
     if (token === null) return 3 // null - 1
