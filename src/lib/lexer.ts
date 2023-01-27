@@ -9,7 +9,7 @@ const charTokenMap: Record<string, TokenType> = {
     ',': TokenType.COMMA,
 }
 
-const number = (rest: string): Token | undefined => {
+export const number = (rest: string): Token | undefined => {
     let literal = ''
     rest.split('').some((char) => {
         if (/[0-9]/.test(char)) {
@@ -25,18 +25,18 @@ const number = (rest: string): Token | undefined => {
     }
 }
 
-const string = (rest: string) => {
+export const string = (rest: string) => {
     if (!rest.startsWith('"')) return
     const closingQuoteIndex = rest.slice(1).split("").findIndex((char) => char === '"')
     return { type: TokenType.STRING, literal: rest.slice(0, closingQuoteIndex + 2) }
 }
 
-const boolean = (rest: string) => {
+export const boolean = (rest: string) => {
     if (rest.startsWith('true')) return { type: TokenType.TRUE, literal: true }
     if (rest.startsWith('false')) return { type: TokenType.FALSE, literal: false }
 }
 
-const _null = (rest: string) => {
+export const _null = (rest: string) => {
     if (rest.startsWith('null')) return { type: TokenType.NULL, literal: null }
 }
 
