@@ -64,7 +64,7 @@ export const lexer = (json: string) => {
             i += tokenSize(token.literal)
             continue
         }
-        throw new Error(`Current tokens: ${JSON.stringify(tokens)}\nUnexpected character: ${char}\nPosition: ${i}`)
+        throw new Error(`Unexpected character: ${char}\nPosition: ${i}`)
     }
 
     return tokens
