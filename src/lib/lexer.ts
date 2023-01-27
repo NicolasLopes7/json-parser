@@ -42,9 +42,9 @@ const _null = (rest: string) => {
 
 const tokenSize = (token?: Token['literal']) => {
     if (typeof token === 'string') return token.length - 1
-    if (typeof token === 'boolean') return 3
+    if (typeof token === 'boolean') return 3 // (true OR false) -1
     if (typeof token === 'number') return token.toString().length - 1
-    if (token === null) return 3
+    if (token === null) return 3 // null - 1
     return 0
 }
 
